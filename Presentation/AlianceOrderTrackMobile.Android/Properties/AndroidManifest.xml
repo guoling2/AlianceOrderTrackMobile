@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.chuanda.AlianceOrderTrackMobile" android:installLocation="preferExternal">
+	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+	<uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+	<application android:label="川大物流联盟移动版" android:icon="@drawable/logo"></application>
+</manifest>

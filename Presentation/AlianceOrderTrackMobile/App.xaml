@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlianceOrderTrackMobile.App">
+    <Application.Resources>
+        <Color x:Key="primary">#3ec3d5</Color>
+        <Color x:Key="Accent">#753BE4</Color>
+        <Color x:Key="BackgroundColor">#2f4259</Color>
+        <Color x:Key="NavigationText">White</Color>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AlianceOrderTrackMobile.Views.SonghuoPage"
+             x:Name="Songhuo"
+             Title="委派配送">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="保存" Command="{Binding CreatePlanCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid Padding="5">
+            <StackLayout Padding="0">
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="装车网点" 
+               VerticalOptions="Center"/>
+                    <Picker 
+                VerticalOptions="Center" 
+                HorizontalOptions="FillAndExpand" ItemsSource="{Binding UserAuthorizeStores}" 
+                    ItemDisplayBinding="{Binding StoreName}" SelectedItem="{Binding SelectedLogisticStore, Mode=TwoWay}">
+                    </Picker>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="运输司机" 
+               VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Editor Text="{Binding Path=SelectDriver.Display}" x:Name="userdriverdt"  Placeholder="姓名,手机号" HorizontalOptions="FillAndExpand"></Editor>
+                    <Button Text="检索" HorizontalOptions="End"  Clicked="TapGestureRecognizer_Tapped"></Button>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" >
+                    <Label Text="单号输入" 
+               VerticalOptions="Center" HorizontalOptions="Start"/>
+                    <Editor Text="" Placeholder="输入需要查询的单号" HorizontalOptions="FillAndExpand" x:Name="HandSearchOrder"></Editor>
+                    <Button Text="检索" HorizontalOptions="End" Command="{Binding SearchOrderCommand}" CommandParameter="{Binding Source={x:Reference HandSearchOrder},Path=Text}"></Button>
+                </StackLayout>
+
+                <BoxView HeightRequest="1" Color="Black"></BoxView>
+                <ListView x:Name="lstView" ItemsSource="{Binding OrderCollections}">
+                    <ListView.Header>
+                        <StackLayout Padding="10,5,0,5" BackgroundColor="#cccccc">
+                            <Label Text="订单" />
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.ContextActions>
+                                    <MenuItem 
+                                        Command="{Binding Path=BindingContext.RemoveItemCommand,
+                                        Source={x:Reference Songhuo}}"
+                                        CommandParameter="{Binding TaskId}"
+                                              Text="移除" IsDestructive="True" />
+                                </ViewCell.ContextActions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*" />
+                                        <ColumnDefinition Width="30*" />
+                                        <ColumnDefinition Width="30*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label  VerticalTextAlignment="Center" Grid.Column="0" Text="{Binding TaskId}" Margin="5,0,0,0"></Label>
+                                    <Label VerticalTextAlignment="Center"  Grid.Column="1" HorizontalTextAlignment="Center"  Text="{Binding ToCity}"></Label>
+                                    <Label VerticalTextAlignment="Center"  Grid.Column="2"  HorizontalTextAlignment="Center" Text="{Binding ServerStatued}"></Label>
+                                    <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="Black"></BoxView>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+                <Button Text="订单扫描" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Command="{Binding QrScanCommand}"></Button>
+            </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               VerticalOptions="Center" HorizontalOptions="Center" 
+                               WidthRequest="50" HeightRequest="50">
+
+            </ActivityIndicator>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

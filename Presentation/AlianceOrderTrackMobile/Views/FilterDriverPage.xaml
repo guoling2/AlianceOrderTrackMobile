@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="查询运输司机"
+             x:Class="AlianceOrderTrackMobile.Views.FilterDriverPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="完成" x:Name="ToolbarDone"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Padding="0">
+                <SearchBar HorizontalOptions="FillAndExpand" x:Name="searchbar" HeightRequest="25" SearchCommand="{Binding SearchDriverCommand}" 
+                       SearchCommandParameter="{Binding Path=Text,Source={x:Reference searchbar}}" 
+                       FontSize="Small" Grid.Row="0" Margin="0,10,0,0"/>
+
+
+                <ListView HorizontalOptions="FillAndExpand" ItemsSource="{Binding PackgeDriverCollections}" SelectedItem="{Binding SelectDriver}" SelectionMode="Single">
+                    <ListView.Header>
+                        <StackLayout Padding="10,5,0,5" BackgroundColor="#cccccc">
+                            <Label Text="可选司机" />
+                        </StackLayout>
+                    </ListView.Header>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="1" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="40*" />
+                                        <ColumnDefinition Width="30*" />
+                                        <ColumnDefinition Width="30*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label  Grid.Row="0"  VerticalTextAlignment="Center" Grid.Column="0" Text="{Binding RealName}" Margin="5,0,0,0"></Label>
+                                    <Label  Grid.Row="0"  VerticalTextAlignment="Center"  Grid.Column="1" HorizontalTextAlignment="Center"  Text="{Binding MobileNumber }"></Label>
+                                    <Label  Grid.Row="0"  VerticalTextAlignment="Center"  Grid.Column="2"  HorizontalTextAlignment="Center" Text="{Binding ServerStatuedDesc}"></Label>
+                                    <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="Black"></BoxView>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               VerticalOptions="Center" HorizontalOptions="Center" 
+                               WidthRequest="50" HeightRequest="50">
+
+            </ActivityIndicator>
+        </Grid>
+     
+      
+    </ContentPage.Content>
+</ContentPage>

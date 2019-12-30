@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:acontrol="clr-namespace:AXamarin.Controls;assembly=AXamarin"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             x:Class="AlianceOrderTrackMobile.Page.LoginDaniaPage">
+    <ContentPage.Resources>
+
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+
+        <ScrollView>
+            <StackLayout Padding="40" Spacing="10">
+                <Label  HorizontalOptions="CenterAndExpand" 
+                              Text="TmsApp" 
+                              TextColor="White" 
+                              FontSize="40" />
+
+                <acontrol:ImageEntry TextColor="White" 
+                        PlaceholderColor="{StaticResource primary}" 
+                        Image="user" 
+                        Placeholder="手机号" 
+                         Text="{Binding Email}"            
+                        HorizontalOptions="FillAndExpand"/>
+                <acontrol:ImageEntry TextColor="White" 
+                    PlaceholderColor="{StaticResource primary}"  
+                    Image="password" 
+                    Placeholder="密码" 
+                                     Text="{Binding Password}"  
+                    IsPassword="True"
+                    HorizontalOptions="FillAndExpand"/>
+
+                <Button HeightRequest="50" 
+                         TextColor="White" 
+                         Text="{Binding Message}"  
+                         BackgroundColor="{StaticResource primary}"
+                         HorizontalOptions="FillAndExpand"  Command="{Binding LoginCommand }"/>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Label  Text="忘记密码" 
+                        HorizontalOptions="Start" 
+                        TextColor="{StaticResource primary}">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgetPasswordCommand}">
+
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+
+                        <Label Text="用户注册"
+                        HorizontalOptions="EndAndExpand" 
+                               VerticalTextAlignment="End"
+                          
+                        TextColor="{StaticResource primary}">
+                            <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding SignupCommand}"
+                                    NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+   
+                <Label Margin="0,0,0,20" Text="© 2018-2019 烟台川大物流有限公司" VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Center" 
+                        TextColor="{StaticResource primary}">
+                    </Label>
+            </StackLayout>
+        </ScrollView>
+
+
+
+          <!--<StackLayout Padding="16,60" VerticalOptions="Center" Orientation="Horizontal" HorizontalOptions="Center">
+                <ActivityIndicator IsRunning="{Binding IsBusy}">
+                    <ActivityIndicator.Color>
+                        <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+                    </ActivityIndicator.Color>
+                </ActivityIndicator>
+                <Label IsVisible="{Binding IsBusy}" Text="{Binding Message}" VerticalOptions="Center"  HorizontalOptions="Center" Style="{DynamicResource EvolveListItemTextStyle}"/>
+            </StackLayout>-->
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
