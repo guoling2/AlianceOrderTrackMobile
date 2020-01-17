@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AlianceOrderTrackMobile.Droid.Services;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Util;
+using XamarinSharedLibrary.IdentityModel;
 
 namespace AlianceOrderTrackMobile.Droid.Activity
 {
@@ -49,17 +51,19 @@ namespace AlianceOrderTrackMobile.Droid.Activity
             Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);
             try
             {
-                //AppUpdateService asc = new AppUpdateService();
+                AppUpdateService asc = new AppUpdateService();
 
-                //var model = await asc.GetServicesVersion();
+                var model = await asc.GetServicesVersion();
 
-                //if (model != null)
-                //{
-                //    DriverOnlineOrderMobile.Droid.Helpers.Settings.ServicesVersion = model.NowVersion;
-                //    DriverOnlineOrderMobile.Droid.Helpers.Settings.UpdateMsg = model.UpdateMessage;
-                //    DriverOnlineOrderMobile.Droid.Helpers.Settings.UpdateDownloadUrl = model.UpdateUrl;
-                //}
-               StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+                if (model != null)
+                {
+
+
+                    GlobalSetting.Instance.ServicesVersion = model.NowVersion;
+                    GlobalSetting.Instance.UpdateMsg = model.UpdateMessage;
+                    GlobalSetting.Instance.UpdateDownloadUrl = model.UpdateUrl;
+                }
+                StartActivity(new Intent(Application.Context, typeof(MainActivity)));
                 //Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
             }
             catch (Exception ex)

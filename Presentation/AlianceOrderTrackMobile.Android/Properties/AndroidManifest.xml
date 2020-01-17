@@ -1,6 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.chuanda.AlianceOrderTrackMobile" android:installLocation="preferExternal">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="27" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0.0" package="com.chuanda.AlianceOrderTrackMobile" android:installLocation="internalOnly">
+	<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="27" />
 	<uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
-	<application android:label="川大物流联盟移动版" android:icon="@drawable/logo"></application>
+	<!--用于写入缓存数据到扩展存储卡-->
+	<!--用于申请获取蓝牙信息进行室内定位-->
+	<!--读写权限-->
+	<!--用于进行网络定位-->
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+	<!--用于访问GPS定位-->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+	<!--获取运营商信息，用于支持提供运营商信息相关的接口-->
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+	<!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+	<!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+	<uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_LOGS" />
+	<uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+	<uses-permission android:name="android.permission.READ_SMS" />
+	<uses-permission android:name="android.permission.READ_USER_DICTIONARY" />
+	<uses-permission android:name="android.permission.RECEIVE_SMS" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+	<uses-permission android:name="android.permission.WRITE_SMS" />
+	<uses-permission android:name="android.permission.WRITE_USER_DICTIONARY" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+	<!--广播权限-->
+	<application android:allowBackup="true" android:label="@string/app_name" android:icon="@drawable/logo">
+		<!--<service android:name="com.amap.api.location.APSService"></service>
+    <meta-data android:name="com.amap.api.v2.apikey" android:value="16a8a0743b0fca8003d660acdee4814f"></meta-data>-->
+		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.chuanda.drivermobile.fileprovider" android:grantUriPermissions="true" android:exported="false">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+		</provider>
+	</application>
 </manifest>

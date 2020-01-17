@@ -1,12 +1,15 @@
 ﻿using System;
 using Acr.UserDialogs;
+using AlianceOrderTrackMobile.Droid.Services;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using FormsToolkit.Droid;
 using Plugin.Permissions;
+using XamarinSharedLibrary.And.Files.PCLStorage;
 
 namespace AlianceOrderTrackMobile.Droid.Activity
 {
@@ -19,24 +22,29 @@ namespace AlianceOrderTrackMobile.Droid.Activity
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-          
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
-            UserDialogs.Init(this);
-            ZXing.Net.Mobile.Forms.Android.Platform.Init();
-
-
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
-            //this.OnKeyDown(Android.Views.Keycode.Enter,
-            //    new Android.Views.KeyEvent(KeyEventActions.Down, Android.Views.Keycode.Enter));
 
             base.OnCreate(savedInstanceState);
 
-            LoadApplication(new App());
-         
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-         //   LoadApplication(new App(),);
-         
+
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+
+            UserDialogs.Init(this);
+
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
+            Toolkit.Init();
+
+            UserDialogs.Init(this);
+
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            LoadApplication(new App());
+
+            AppUpdateService.UpdateCheckVersionAsync(this);
+       
+
         }
 
         public override Intent RegisterReceiver(BroadcastReceiver receiver, IntentFilter filter)
@@ -46,10 +54,65 @@ namespace AlianceOrderTrackMobile.Droid.Activity
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-          
-            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //if (requestCode == TmsAndroidPromise.AMapLocation)
+            //{
+            //    foreach (Permission grantResult in grantResults)
+            //    {
+            //        if (grantResult == Permission.Denied)
+            //        {
+
+
+            //            //    var builder = new Android.Support.V7.App.AlertDialog.Builder(this);
+
+            //            //    builder.SetCancelable(false);
+            //            ////    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            //            //    builder.SetTitle("权限设置");
+            //            //    builder.SetMessage("系统需要定位权限才能工作");
+            //            //    builder.SetPositiveButton("获取权限", (a,b)=>
+            //            //    {
+            //            //        this.StartActivity(PermissionUtil.getAppDetailSettingIntent(this));
+            //            //        Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            //            //    });
+            //            //    builder.SetNegativeButton("取消", (a, b) =>
+            //            //    {
+            //            //        Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            //            //    });
+            //            //    builder.Show();
+
+            //            //    break;
+            //            //  Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+            //            //android.os.Process.killProcess(android.os.Process.myPid());
+            //            //var xxx = System.Environment.ExitCode;
+
+            //            //System.Environment.Exit(System.Environment.ExitCode);
+            //            //AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            //            //builder.SetTitle("权限设置");
+
+
+            //            //Intent localIntent = new Intent();
+            //            //localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //            //localIntent.setAction("android.settings.APPLICATION_DETAILS_SETTINGS");
+            //            //localIntent.setData(Uri.fromParts("package", context.getPackageName(), null));
+
+            //            //return localIntent;
+            //            //    ————————————————
+            //            //版权声明：本文为CSDN博主「鹏鹏~」的原创文章，遵循 CC 4.0 BY - SA 版权协议，转载请附上原文出处链接及本声明。
+            //            //原文链接：https://blog.csdn.net/qq_36321889/article/details/90404083
+            //            //System.Environment.Exit(0);
+
+            //            //退出
+            //        }
+            //    }
+            //}
+
+
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            FolderAccessPermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 

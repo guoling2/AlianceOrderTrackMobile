@@ -111,9 +111,13 @@ namespace XamarinSharedLibrary.IdentityModel
 
         public string LogoutCallback { get; set; }
 
-        
+        public string ServicesVersion { get; set; }
 
-      //  public string GatewayMarketingEndpoint { get; set; }
+        public string UpdateMsg { get; set; }
+
+        public string UpdateDownloadUrl { get; set; }
+
+        //  public string GatewayMarketingEndpoint { get; set; }
 
         private void UpdateEndpoint(string endpoint)
         {
