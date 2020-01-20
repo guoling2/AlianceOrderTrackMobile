@@ -25,9 +25,16 @@ namespace AlianceOrderTrackMobile.Views
         {
             InitializeComponent();
 
-           
-            DefaultPage = new CustomerOrderPage();
-            BindingContext = new MyDashbordExMasterViewModel();
+            var x= new MyDashbordExMasterViewModel();
+          
+
+            if (DefaultPage == null)
+            {
+
+                DefaultPage = new LocalXiehuoPage();
+            }
+
+            BindingContext = x;
             ListView = MenuItemsListView;
         }
 
@@ -40,9 +47,13 @@ namespace AlianceOrderTrackMobile.Views
             {
                 MenuItems = new ObservableCollection<MyDashbordExMenuItem>(new[]
                 {
-                    new MyDashbordExMenuItem { Id = 0, Title = "客户订单",TargetTypeString="AlianceOrderTrackMobile.Views.CustomerOrderPage" } ,
-                    new MyDashbordExMenuItem { Id = 1, Title = "本地卸货",TargetTypeString="AlianceOrderTrackMobile.Views.LocalXiehuoPage" } ,
-                    new MyDashbordExMenuItem { Id = 2, Title = "配载送货",TargetTypeString="AlianceOrderTrackMobile.Views.SonghuoPage" }
+                   // new MyDashbordExMenuItem { Id = 0, Title = "客户订单",TargetTypeString="AlianceOrderTrackMobile.Views.CustomerOrderPage" } ,
+                    new MyDashbordExMenuItem { Id = 0, Title = "本地卸货",TargetTypeString="AlianceOrderTrackMobile.Views.LocalXiehuoPage" } ,
+                 //   new MyDashbordExMenuItem { Id = 2, Title = "配载送货",TargetTypeString="AlianceOrderTrackMobile.Views.SonghuoPage" },
+                    new MyDashbordExMenuItem { Id = 1, Title = "扫描设置",TargetTypeString="AlianceOrderTrackMobile.Views.Setting.BroadcastConfigPage" }
+
+
+                   
                 });
             }
             
@@ -56,6 +67,21 @@ namespace AlianceOrderTrackMobile.Views
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
+        }
+
+
+
+        public Func<SelectedItemChangedEventArgs, Xamarin.Forms.Page> SelectAction { get; set; }
+        private async void MenuItemsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+           var page= SelectAction(e);
+
+           var inx = page as IXamarinPageInitialize;
+
+           if (inx != null)
+           {
+               await inx.Initialize();
+           }
         }
     }
 }

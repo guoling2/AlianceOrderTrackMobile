@@ -1,24 +1,33 @@
 ﻿using AlianceOrderTrackMobile.Services;
 using AlianceOrderTrackMobile.Services.Abstractions;
 using AlianceOrderTrackMobile.Services.Impl;
+using TmsBuinessCommonLibrary.Services;
 using XamarinSharedLibrary.IdentityModel;
 using XamarinSharedLibrary.Model.Token;
+using XamarinSharedLibrary.Sqllite;
 
 namespace AlianceOrderTrackMobile
 {
    public static class DriverApp
     {
 
-       
+
+
+        public static void RegisterUrlResource()
+        {
+            GlobalSetting.Instance.BaseIdentityEndpoint = "https://account.trandawl.cn";
+
+            GlobalSetting.Instance.GatewayLogisticEndpoint = "https://aliance.trandawl.cn";
+
+        }
         public static void RegisterDependencies()
         {
 
 
 
-            GlobalSetting.Instance.BaseIdentityEndpoint = "https://account.trandawl.cn";
-            GlobalSetting.Instance.GatewayLogisticEndpoint = "https://aliance.trandawl.cn";
-            
+          //  Xamarin.Forms.DependencyService.Register<TmsLocalDbContext>();
 
+            BroadcastConfigService.Register();
 
             IdentityServicesExtension.Register();
 

@@ -37,6 +37,7 @@ namespace AlianceOrderTrackMobile
             InitializeComponent();
 
             //  LoginDaniaPage
+            DriverApp.RegisterUrlResource();
             DriverApp.RegisterDependencies();
 
             MainPage = new MyDashbordEx();

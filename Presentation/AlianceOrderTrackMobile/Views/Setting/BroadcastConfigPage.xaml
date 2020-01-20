@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="一维码扫描设置"
+             x:Class="AlianceOrderTrackMobile.Views.Setting.BroadcastConfigPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="保存" Clicked="ToolbarItem_Clicked"></ToolbarItem>
+        <ToolbarItem  Text="刷新" Clicked="ToolbarItem_Reload_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Margin="20" VerticalOptions="StartAndExpand">
+                <Label Text="设备型号" />
+                <Entry Text="{Binding MachineId}"  IsReadOnly="True" x:Name="MachineTxt"/>
+                <Label Text="广播名称" />
+                <Entry Text="{Binding FileActionName}"  x:Name="FileActionName"/>
+                <Label Text="过滤键值" />
+                <Entry Text="{Binding BarCodeName}"  x:Name="BarCodeName"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

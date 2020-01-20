@@ -45,7 +45,9 @@ namespace AlianceOrderTrackMobile.Droid.Activity
         // Simulates background work that happens behind the splash screen
         async Task SimulateStartup()
         {
-           
+
+            DriverApp.RegisterUrlResource();
+
             Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
 
             Android.Support.V7.App.AlertDialog.Builder builder = new Android.Support.V7.App.AlertDialog.Builder(this);

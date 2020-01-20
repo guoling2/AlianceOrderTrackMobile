@@ -16,11 +16,16 @@
                               TextColor="White" 
                               FontSize="40" />
 
-                <Entry Placeholder="工号"  Text="{Binding Email}"  HorizontalOptions="FillAndExpand"></Entry>
-                    <Entry Placeholder="登录密码"   
-                           Text="{Binding Password}"  
-                           IsPassword="True"
-                           HorizontalOptions="FillAndExpand"></Entry>
+                    <StackLayout Margin="0,50,0,0">
+                        <Entry Placeholder="工号"  Text="{Binding Email}" TextColor="White" FontSize="20"  HorizontalOptions="FillAndExpand"></Entry>
+                        <Entry Placeholder="登录密码"   
+                               Text="{Binding Password}"  
+                               IsPassword="True"
+                               TextColor="White" 
+                               FontSize="20"
+                               HorizontalOptions="FillAndExpand"></Entry>
+                    </StackLayout>
+             
                     <!--<acontrol:ImageEntry TextColor="White" 
                         PlaceholderColor="{StaticResource primary}" 
                         Image="user" 

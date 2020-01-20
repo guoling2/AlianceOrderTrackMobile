@@ -47,6 +47,9 @@
   <ItemGroup>
     <Compile Include="AndInitHelp.cs" />
     <Compile Include="AudioPlayerService.cs" />
+    <Compile Include="Broadcast\AndroidBroadcastService.cs" />
+    <Compile Include="Broadcast\BarcodeReceiver.cs" />
+    <Compile Include="Broadcast\CommonBarcodeReceiver.cs" />
     <Compile Include="Files\PCLStorage\AndroidFile.cs" />
     <Compile Include="Files\PCLStorage\AndroidFileSystem.cs" />
     <Compile Include="Files\PCLStorage\AndroidFolder.cs" />
@@ -55,6 +58,7 @@
     <Compile Include="Files\PCLStorage\TmsLocalSQLiteOpenHelper.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sqllite\AndroidDatabaseService.cs" />
     <Compile Include="Ssl\HttpsTrustManager.cs" />
     <Compile Include="TmsDownloadManager.cs" />
   </ItemGroup>

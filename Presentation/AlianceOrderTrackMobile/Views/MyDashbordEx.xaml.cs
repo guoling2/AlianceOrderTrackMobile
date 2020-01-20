@@ -33,14 +33,61 @@ namespace AlianceOrderTrackMobile.Views
                 IsPresented = false;
             }
 
-          
 
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+
+            MasterPage.SelectAction = (a) =>
+            {
+
+                var item = a.SelectedItem as MyDashbordExMenuItem;
+
+                if (item == null)
+                    return null;
+
+                if (CurrentPageTitle != null)
+                {
+
+
+                    if (item.Title == CurrentPageTitle)
+                    {
+                        return null;
+                    }
+                }
+
+
+                var pageheadhash = item.Title;
+
+                if (!PageCache.ContainsKey(pageheadhash))
+                {
+                    var xxx = Type.GetType(item.TargetTypeString);
+                    PageCache.Add(pageheadhash, xxx);
+                }
+
+
+                CurrentPageTitle = item.Title;
+
+                var page = (Xamarin.Forms.Page)Activator.CreateInstance(PageCache[pageheadhash]);
+
+                page.Title = item.Title;
+
+
+                Detail = new NavigationPage(page) { Title = item.Title };
+                IsPresented = false;
+
+                MasterPage.ListView.SelectedItem = null;
+
+
+                return page;
+               
+
+            };
+
+            //  MasterPage.ListView.ItemSelected += ListView_ItemSelected1;
         }
 
+      
 
         private string CurrentPageTitle;
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async Task ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 
             var item = e.SelectedItem as MyDashbordExMenuItem;
@@ -73,12 +120,25 @@ namespace AlianceOrderTrackMobile.Views
             CurrentPageTitle = item.Title;
 
             var page = (Xamarin.Forms.Page)Activator.CreateInstance(PageCache[pageheadhash]);
-            page.Title = item.Title;
 
+            page.Title = item.Title;
+                
+          
             Detail = new NavigationPage(page) {Title = item.Title};
             IsPresented = false;
 
             MasterPage.ListView.SelectedItem = null;
+
+            var inx = page as IXamarinPageInitialize;
+
+            if (inx != null)
+            {
+               await inx.Initialize();
+            }
+
+
+
+            //return Task.CompletedTask;
         }
 
         protected override void OnAppearing()

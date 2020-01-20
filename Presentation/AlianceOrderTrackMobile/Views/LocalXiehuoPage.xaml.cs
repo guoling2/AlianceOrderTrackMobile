@@ -9,9 +9,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TmsBuinessCommonLibrary.Help;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinSharedLibrary.Broadcast;
 using XamarinSharedLibrary.Services;
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
@@ -19,16 +20,29 @@ using ZXing.Net.Mobile.Forms;
 namespace AlianceOrderTrackMobile.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LocalXiehuoPage : ContentPage
-	{
-        
+	public partial class LocalXiehuoPage : ContentPage, IXamarinPageInitialize
+    {
 
+        private IBroadcastService broadcastService;
         XiehuoViewModel xiehuoViewModel;
         public LocalXiehuoPage ()
 		{
 			InitializeComponent ();
 
-            
+            //注册扫描
+            broadcastService = BroadcastHelp.CreateBarcode1Service();
+
+            broadcastService.Result += BroadcastService_Result;
+
+        }
+        private async void BroadcastService_Result(object sender, BroadcastReceiveEventArgs e)
+        {
+           await Acr.UserDialogs.UserDialogs.Instance.AlertAsync(e.Result);
+
+        }
+        public Task Initialize()
+        {
+
 
             xiehuoViewModel = new XiehuoViewModel(this.Navigation);
 
@@ -44,10 +58,9 @@ namespace AlianceOrderTrackMobile.Views
             xiehuoViewModel.InitializeComplateAction.Invoke();
 
             this.HandSearchOrder.Focus();
-           
-        }
 
-     
+            return Task.CompletedTask;
+        }
 
         private void HandSearchOrder_TextChanged(object sender, TextChangedEventArgs e)
         {
