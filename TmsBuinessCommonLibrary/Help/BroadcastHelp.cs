@@ -11,7 +11,7 @@ namespace TmsBuinessCommonLibrary.Help
     public static class BroadcastHelp
     {
 
-        public static async Task SetBroadcast(this IBroadcastService broadcastService)
+        public static  void SetBroadcast(this IBroadcastService broadcastService)
         {
             var broadcastConfigService = Xamarin.Forms.DependencyService.Resolve<BroadcastConfigService>();
             var dbresult =  broadcastConfigService.GetById(Xamarin.Essentials.DeviceInfo.Model);

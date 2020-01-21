@@ -40,10 +40,9 @@ namespace AlianceOrderTrackMobile.Views
            await Acr.UserDialogs.UserDialogs.Instance.AlertAsync(e.Result);
 
         }
-        public Task Initialize()
+        protected override void OnAppearing()
         {
-
-
+            broadcastService.SetBroadcast();
             xiehuoViewModel = new XiehuoViewModel(this.Navigation);
 
             this.BindingContext = xiehuoViewModel;
@@ -59,7 +58,23 @@ namespace AlianceOrderTrackMobile.Views
 
             this.HandSearchOrder.Focus();
 
+            base.OnAppearing();
+        }
+        public  Task Initialize()
+        {
+
+
             return Task.CompletedTask;
+
+
+             //return Task.CompletedTask;
+        }
+
+        protected override void OnDisappearing()
+        {
+            broadcastService.UnregisterReceiver();
+
+            base.OnDisappearing();
         }
 
         private void HandSearchOrder_TextChanged(object sender, TextChangedEventArgs e)
