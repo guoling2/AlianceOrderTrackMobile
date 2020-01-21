@@ -76,7 +76,13 @@
                 <Button Text="订单扫描" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Command="{Binding QrScanCommand}"></Button>
             </StackLayout>
 
-            <ActivityIndicator IsRunning="{Binding IsBusy}"
+            <!--<ActivityIndicator IsRunning="{Binding IsBusy}">
+                <ActivityIndicator.Color>
+                    <OnPlatform x:TypeArguments="Color" Android="{StaticResource Accent}"/>
+                </ActivityIndicator.Color>
+            </ActivityIndicator>-->
+
+            <ActivityIndicator IsRunning="True"
                                VerticalOptions="Center" HorizontalOptions="Center" 
                                WidthRequest="50" HeightRequest="50">
 

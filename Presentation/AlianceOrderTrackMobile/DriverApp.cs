@@ -33,6 +33,9 @@ namespace AlianceOrderTrackMobile
 
             Xamarin.Forms.DependencyService.Register<IdentityService>();
 
+
+            Xamarin.Forms.DependencyService.Register<IShipmentXiecheServices, ShipmentXiecheServices>();
+
             Xamarin.Forms.DependencyService.Register<IRequestProvider, XRequestProvider>();
 
             Xamarin.Forms.DependencyService.Register<ILogisticStoreServices,LogisticStoreServices>();

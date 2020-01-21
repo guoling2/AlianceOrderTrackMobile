@@ -93,7 +93,7 @@ namespace AlianceOrderTrackMobile.Services
 
             var httpclient = await CreateHttpClient().SetBearTokenAndGetIt();
 
-            var response = await httpclient.PostAsJsonAsync<TPostRequest>(uri, data);
+            var response = await httpclient.PostAsJsonAsync(uri, data);
 
              await HandleResponse(response);
 

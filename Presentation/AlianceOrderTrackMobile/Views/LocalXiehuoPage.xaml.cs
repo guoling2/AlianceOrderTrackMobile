@@ -29,6 +29,10 @@ namespace AlianceOrderTrackMobile.Views
 		{
 			InitializeComponent ();
 
+            xiehuoViewModel = new XiehuoViewModel(this.Navigation);
+
+            this.BindingContext = xiehuoViewModel;
+
             //注册扫描
             broadcastService = BroadcastHelp.CreateBarcode1Service();
 
@@ -37,15 +41,16 @@ namespace AlianceOrderTrackMobile.Views
         }
         private async void BroadcastService_Result(object sender, BroadcastReceiveEventArgs e)
         {
-           await Acr.UserDialogs.UserDialogs.Instance.AlertAsync(e.Result);
+            xiehuoViewModel.SearchOrderCommand.Execute(e.Result);
+
 
         }
         protected override void OnAppearing()
         {
             broadcastService.SetBroadcast();
-            xiehuoViewModel = new XiehuoViewModel(this.Navigation);
+        
 
-            this.BindingContext = xiehuoViewModel;
+         
 
             xiehuoViewModel.InitializeComplateAction = async () =>
             {

@@ -21,8 +21,43 @@ namespace AlianceOrderTrackMobile.Model
         /// 返回数据
         /// </summary>
         public object Data { get; set; }
+
+        public TmsResponseError Error { get; set; }
+
+        public bool HasError => Error != null;
     }
 
+    public class TmsResponseEvolution<T> where T : new()
+    {
+        /// <summary>
+        /// 状态码 参考TmsStatusCodeEnum
+        /// </summary>
+        public int StatusCode { get; set; }
+
+        /// <summary>
+        /// 操作信息
+        /// </summary>
+        public string Info { get; set; }
+
+        public TmsResponseError Error { get; set; }
+
+        public bool HasError => Error != null;
+        /// <summary>
+        /// 返回数据
+        /// </summary>
+        public T Data { get; set; }
+    }
+
+    public class TmsResponseError
+    {
+        public TmsResponseError(string errorMsg, string code)
+        {
+            this.ErrorMsg = errorMsg;
+            this.Code = code;
+        }
+        public string ErrorMsg { get; set; }
+        public string Code { get; set; }
+    }
     public enum TmsStatusCodeEnum
     {
         [Description("请求(或处理)成功")]

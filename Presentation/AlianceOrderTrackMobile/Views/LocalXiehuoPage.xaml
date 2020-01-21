@@ -4,7 +4,7 @@
              xmlns:viewControl1="clr-namespace:AlianceOrderTrackMobile.ViewControl"
              x:Class="AlianceOrderTrackMobile.Views.LocalXiehuoPage"
              x:Name="Localxiehuo"
-             Title="本地卸货">
+             Title="场站卸货">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="确认卸车" Command="{Binding SaveOrdersCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
@@ -18,6 +18,20 @@
                 VerticalOptions="Center" 
                 HorizontalOptions="FillAndExpand" ItemsSource="{Binding UserAuthorizeStores}" 
                     ItemDisplayBinding="{Binding StoreName}" SelectedItem="{Binding SelectedLogisticStore, Mode=TwoWay}">
+                    </Picker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="5">
+                    <Label Text="卸货模式" 
+                           VerticalOptions="Center"/>
+                    <Picker 
+                        VerticalOptions="Center" 
+                        HorizontalOptions="FillAndExpand" SelectedItem="{Binding SelectXieModel, Mode=TwoWay}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>整单卸货</x:String>
+                                <x:String>箱码卸货</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
                     </Picker>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Padding="5">
@@ -58,12 +72,12 @@
                                         <RowDefinition Height="1" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40*" />
+                                        <ColumnDefinition Width="50*" />
                                         <ColumnDefinition Width="30*" />
-                                        <ColumnDefinition Width="30*" />
+                                        <ColumnDefinition Width="20*" />
                                     </Grid.ColumnDefinitions>
                                     <Label  VerticalTextAlignment="Center" Grid.Column="0" Text="{Binding TaskId}" Margin="5,0,0,0"></Label>
-                                    <Label VerticalTextAlignment="Center"  Grid.Column="1" HorizontalTextAlignment="Center"  Text="{Binding ToCity}"></Label>
+                                    <Label VerticalTextAlignment="Center"  Grid.Column="1" HorizontalTextAlignment="Center"  Text="{Binding OrderCount}"></Label>
                                     <Label VerticalTextAlignment="Center"  Grid.Column="2"  HorizontalTextAlignment="Center" Text="{Binding ServerStatued}"></Label>
                                     <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="Black"></BoxView>
                                 </Grid>
@@ -76,7 +90,7 @@
                 <Button Text="订单扫描" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Command="{Binding QrScanCommand}" ></Button>
             </StackLayout>
 
-            <ActivityIndicator IsRunning="{Binding IsBusy}"
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"
                                VerticalOptions="Center" HorizontalOptions="Center" 
                                WidthRequest="50" HeightRequest="50">
                 

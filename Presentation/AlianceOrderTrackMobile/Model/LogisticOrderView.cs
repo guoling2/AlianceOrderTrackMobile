@@ -5,6 +5,15 @@ using System.Text;
 
 namespace AlianceOrderTrackMobile.Model
 {
+
+    public class XiecheSacnResponseModel
+    {
+       public string XieCheId { get; set; }
+       public string XieCheCode { get; set; }
+        public decimal OrderCount { get; set; }
+        public int PlanStatuedId { get; set; }
+        public string ActionStoreId { get; set; }
+    }
     public class LogisticTrackView
     {
 

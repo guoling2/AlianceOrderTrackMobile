@@ -174,7 +174,7 @@ namespace AlianceOrderTrackMobile.ViewModel
                     TaskId = resulta.TrackOrderId,
                     ServerId = resulta.ShipmentId,
                     ServerStatued = resulta.ReceivedTotalCount.ToString(),
-                    ToCity = resulta.DestCity
+                    OrderCount =0
                 });
             }
 

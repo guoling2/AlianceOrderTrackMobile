@@ -7,7 +7,7 @@ namespace AlianceOrderTrackMobile.ViewModel.Model
 
         private string _taskId;
         private string _serverId;
-        private string _toCity;
+        private decimal _ordercount;
         private string _serverStatued;
 
 
@@ -32,14 +32,14 @@ namespace AlianceOrderTrackMobile.ViewModel.Model
             }
         }
 
-        public string ToCity
+        public decimal OrderCount
         {
-            get => _toCity;
+            get => _ordercount;
 
             set
             {
-                _toCity = value;
-                RaisePropertyChanged(() => ToCity);
+                _ordercount = value;
+                RaisePropertyChanged(() => OrderCount);
             }
         }
 

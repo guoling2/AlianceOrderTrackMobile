@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BackgroundColor="{StaticResource BackgroundColor}"
              x:Class="AlianceOrderTrackMobile.Page.LoginDaniaPage">
     <ContentPage.Resources>
 
@@ -13,15 +12,14 @@
             <StackLayout Padding="40" Spacing="10">
                 <Label  HorizontalOptions="CenterAndExpand" 
                               Text="TmsApp" 
-                              TextColor="White" 
+                              TextColor="Black" 
                               FontSize="40" />
 
                     <StackLayout Margin="0,50,0,0">
-                        <Entry Placeholder="工号"  Text="{Binding Email}" TextColor="White" FontSize="20"  HorizontalOptions="FillAndExpand"></Entry>
+                        <Entry Placeholder="工号"  Text="{Binding Email}" FontSize="20"  HorizontalOptions="FillAndExpand"></Entry>
                         <Entry Placeholder="登录密码"   
                                Text="{Binding Password}"  
                                IsPassword="True"
-                               TextColor="White" 
                                FontSize="20"
                                HorizontalOptions="FillAndExpand"></Entry>
                     </StackLayout>

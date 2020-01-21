@@ -48,7 +48,7 @@ namespace AlianceOrderTrackMobile.Views
                 MenuItems = new ObservableCollection<MyDashbordExMenuItem>(new[]
                 {
                    // new MyDashbordExMenuItem { Id = 0, Title = "客户订单",TargetTypeString="AlianceOrderTrackMobile.Views.CustomerOrderPage" } ,
-                    new MyDashbordExMenuItem { Id = 0, Title = "本地卸货",TargetTypeString="AlianceOrderTrackMobile.Views.LocalXiehuoPage" } ,
+                    new MyDashbordExMenuItem { Id = 0, Title = "场站卸货",TargetTypeString="AlianceOrderTrackMobile.Views.LocalXiehuoPage" } ,
                  //   new MyDashbordExMenuItem { Id = 2, Title = "配载送货",TargetTypeString="AlianceOrderTrackMobile.Views.SonghuoPage" },
                     new MyDashbordExMenuItem { Id = 1, Title = "扫描设置",TargetTypeString="AlianceOrderTrackMobile.Views.Setting.BroadcastConfigPage" }
 

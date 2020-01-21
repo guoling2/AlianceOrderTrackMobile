@@ -29,7 +29,7 @@ namespace AlianceOrderTrackMobile.Views
             {
                 //  this.Detail = MasterPage.DefaultPage;
 
-                Detail = new NavigationPage(MasterPage.DefaultPage);
+                Detail = new NavigationPage(new UserDetailDashobord());
                 IsPresented = false;
             }
 
